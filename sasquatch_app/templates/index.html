@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous'>
+    <title>Login and Registration</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Register User</h1>
+                <form action="/user/create" method="POST">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name = "first_name" class="form-control">
+                    {% for error in get_flashed_messages(category_filter = ['first_name']) %}
+                        <p class="alert alert-danger">{{error}}</p>
+                    {% endfor %}
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name = "last_name" class="form-control">
+                    {% for error in get_flashed_messages(category_filter = ['last_name']) %}
+                        <p class="alert alert-danger">{{error}}</p>
+                    {% endfor %}
+                    <label for="email">Email:</label>
+                    <input type="email" name = "email" class="form-control">
+                    {% for error in get_flashed_messages(category_filter = ['email']) %}
+                        <p class="alert alert-danger">{{error}}</p>
+                    {% endfor %}
+                    <label for="password">Password:</label>
+                    <input type="password" name = "password" class="form-control">
+                    {% for error in get_flashed_messages(category_filter = ['password']) %}
+                        <p class="alert alert-danger">{{error}}</p>
+                    {% endfor %}
+                    <label for="confirm_p">Confirm Password:</label>
+                    <input type="password" name = "confirm_p" class="form-control">
+                    {% for error in get_flashed_messages(category_filter = ['confirm_p']) %}
+                        <p class="alert alert-danger">{{error}}</p>
+                    {% endfor %}
+                    <br>
+                    <input type="submit" name='Register' class="btn btn-primary">
+                </form>
+            </div>
+            <div class="col">
+                <h1>Log In</h1>
+                <form action="/user/login" method="POST">
+                    {% for error in get_flashed_messages(category_filter = ['login_error']) %}
+                        <p class="alert alert-danger">{{error}}</p>
+                    {% endfor %}
+                    <label for="email">Email:</label>
+                    <input type="text" name = "email" class="form-control">
+                    <label for="password">Password:</label>
+                    <input type="password" name = "password" class="form-control">
+                    <br>
+                    <input type="submit" name='Login' class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
